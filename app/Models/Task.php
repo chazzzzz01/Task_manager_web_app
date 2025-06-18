@@ -1,10 +1,13 @@
 <?php
 
+// Declare the namespace of the model
 namespace App\Models;
 
+// Import traits and base Model class
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+// Task model, it represents the "tasks" table in the database
 class Task extends Model
 {
     use HasFactory;
