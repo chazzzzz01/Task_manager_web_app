@@ -1,44 +1,44 @@
-<!-- TaskForm.vue -->
+
 <script setup>
 import { ref } from 'vue';
-import { useForm } from '@inertiajs/vue3'; // ➤ Import sa Inertia form handler (para same sa Laravel form handling)
+import { useForm } from '@inertiajs/vue3'; // Import sa Inertia form handler (para same sa Laravel form handling)
 
 // Emits success and close event back to parent (Dashboard.vue)
 const emit = defineEmits(['success', 'close']);
 
-// ➤ Setup sa form inputs (title ug description) gamit useForm
+// Setup sa form inputs (title ug description) gamit useForm
 const form = useForm({
   title: '',
   description: '',
 });
 
-// ➤ Loading state para i-disable ang button kung nag-submit
+// Loading state para i-disable ang button kung nag-submit
 const loading = ref(false);
 
-// ➤ Handle sa form submission
+// Handle sa form submission
 function submit() {
   form.clearErrors(); // ➤ I-clear una ang previous errors
 
-  // ➤ Validation: kung walay title, butangi og error
+  //  Validation: kung walay title, butangi og error
   if (!form.title.trim()) {
     form.errors.title = 'Title is required';
     return;
   }
 
-  loading.value = true; // ➤ I-activate ang loading state
+  loading.value = true; //  I-activate ang loading state
 
-  // ➤ Send POST request to /tasks using Inertia
+  //  Send POST request to /tasks using Inertia
   form.post('/tasks', {
-    preserveScroll: true, // ➤ PaFra di mo-scroll to top after submit
+    preserveScroll: true, //  PaFra di mo-scroll to top after submit
 
     onSuccess: () => {
-      form.reset(); // ➤ I-clear ang form inputs
+      form.reset(); //  I-clear ang form inputs
       emit('success', 'Task created successfully!'); // ➤ Send flash message to parent
-      emit('close'); // ➤ Close the modal (TaskForm)
+      emit('close'); // Close the modal (TaskForm)
     },
 
     onFinish: () => {
-      loading.value = false; // ➤ Reset loading state
+      loading.value = false; //  Reset loading state
     },
   });
 }
@@ -46,15 +46,15 @@ function submit() {
 
 
 <template>
-  <!-- ➤ Black overlay background for modal -->
+  <!-- Black overlay background for modal -->
   <div class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
 
-    <!-- ➤ Modal card container -->
+    <!-- Modal card container -->
     <div class="bg-white rounded-lg shadow-lg w-full max-w-md mx-4 p-6 space-y-4">
 
       <h2 class="text-lg font-semibold text-gray-800">Create New Task</h2>
 
-      <!-- ➤ Form submission -->
+      <!-- Form submission -->
       <form @submit.prevent="submit" class="space-y-4">
 
         <!-- Title Input Field -->

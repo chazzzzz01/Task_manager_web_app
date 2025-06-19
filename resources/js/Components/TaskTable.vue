@@ -1,7 +1,7 @@
 <script setup>
 // Imports
-import { ref, reactive } from 'vue'; // ➤ ref for reactive single value, reactive for form object
-import { router } from '@inertiajs/vue3'; // ➤ for making Inertia PUT/DELETE requests
+import { ref, reactive } from 'vue'; // ref for reactive single value, reactive for form object
+import { router } from '@inertiajs/vue3'; // for making Inertia PUT/DELETE requests
 
 // Props: Receive task data from parent (Dashboard.vue)
 const props = defineProps({ tasks: Array });
@@ -18,7 +18,7 @@ const editForm = reactive({
   description: ''
 });
 
-// ➤ Toggle if the task is done or not (PUT request to /tasks/{id})
+// Toggle if the task is done or not (PUT request to /tasks/{id})
 function toggleDone(task) {
   router.put(`/tasks/${task.id}`, {
     is_done: !task.is_done
@@ -28,7 +28,7 @@ function toggleDone(task) {
   });
 }
 
-// ➤ Delete a task with confirmation (DELETE request)
+// Delete a task with confirmation (DELETE request)
 function deleteTask(id) {
   if (confirm('Are you sure you want to delete this task?')) {
     router.delete(`/tasks/${id}`, {

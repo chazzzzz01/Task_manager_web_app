@@ -3,16 +3,17 @@ import { ref } from 'vue'; // gamit sa pag declare ug reactive variables (mo-upd
 
 import { Head } from '@inertiajs/vue3'; // para sa page title (browser tab name)
 
+//  wrapper layout para sa mga naka-login nga users
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue'; 
-// ➤ wrapper layout para sa mga naka-login nga users
 
+// component para sa task creation/editing form
 import TaskForm from '@/Components/TaskForm.vue'; 
-// ➤ component para sa task creation/editing form
 
+// component nga mo display sa table/list sa imong tasks
 import TaskTable from '@/Components/TaskTable.vue'; 
-// ➤ component nga mo display sa table/list sa imong tasks
 
-// ➤ props nga gikan sa Laravel controller
+
+// props nga gikan sa Laravel controller
 const props = defineProps({
   tasks: Array,      // list sa tasks gikan sa database
   flash: Object,     // message (like "Task Created!") human sa action
