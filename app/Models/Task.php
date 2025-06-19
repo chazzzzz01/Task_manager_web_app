@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 // Task model, it represents the "tasks" table in the database
+//define the eloquent model for the tasks table
 class Task extends Model
 {
     use HasFactory;
